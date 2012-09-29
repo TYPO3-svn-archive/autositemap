@@ -607,7 +607,7 @@ plugin.tx_autositemap_pi1 {
               wrapItemAndSub >
             }
             wrap (
-                    <div class="ym-g%margin% ym-gl">
+                    <div class="ym-g%margin% ym-gr">
                       <div class="ym-gbox">
                       |
                       </div>
