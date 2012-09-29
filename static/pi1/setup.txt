@@ -71,7 +71,7 @@ plugin.tx_autositemap_pi1 {
       // [INTEGER] uid of the rootpage. Recommended: leave it empty!
     rootpageId = TEXT
     rootpageId {
-      value = 
+      value = {$plugin.tx_autositemap_pi1.rootline.rootpageId}
     }
   }
    // Rules for number of columns and line break
