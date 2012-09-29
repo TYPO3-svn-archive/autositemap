@@ -2461,7 +2461,7 @@ class tx_autositemap_pi1 extends tslib_pibase
 /**
  * initTypoScript( ):
  *
- * version 0.0.3
+ * version 0.0.4
  * since  0.0.2
  *
  * @return    void

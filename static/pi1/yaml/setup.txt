@@ -261,6 +261,7 @@ plugin.tx_autositemap_pi1 {
         menu_main {
             // [STRING, CSV] Will set while runtime
           excludeUidList  = 
+          excludeDoktypes = {$plugin.tx_autositemap_pi1.hmenu.excludeDoktypes}
           1 = TMENU
           1 {
             expAll = 1

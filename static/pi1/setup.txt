@@ -101,7 +101,7 @@ plugin.tx_autositemap_pi1 {
     pages {
       andWhere = TEXT
       andWhere {
-        value       = AND doktype = 1 AND nav_hide = 0
+        value       = AND doktype NOT IN ({$plugin.tx_autositemap_pi1.hmenu.excludeDoktypes}) AND nav_hide = 0
         noTrimWrap  = | ||
       }
     }
