@@ -1244,7 +1244,7 @@ class tx_autositemap_pi1 extends tslib_pibase
       }
     }
 
-var_dump( __METHOD__, __LINE__, $this->sumOfLevels, $this->menusWithLinebreak, $this->greatestMenu );
+//var_dump( __METHOD__, __LINE__, $this->sumOfLevels, $this->menusWithLinebreak, $this->greatestMenu );
 
     return;
   }

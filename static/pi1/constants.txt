@@ -9,6 +9,6 @@ plugin.tx_autositemap_pi1 {
   rules.menuItems.lineBreak = 13
 
 
-  # cat=Autositemap - Debugging//101;   type=int+;  label= Enable Debugging: HTML comments will displayed
-  debugging = 0
+  # cat=Autositemap - Debugging//101;   type=boolean;  label= Enable Debugging: HTML comments will displayed
+  debugging = false
 }
