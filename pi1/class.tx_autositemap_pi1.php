@@ -2067,6 +2067,8 @@ class tx_autositemap_pi1 extends tslib_pibase
         {
           $prompt = 'The sitemap code doesn\'t contains the marker "' . $hashMarkerOuter . '"!';
           t3lib_div::devlog(' [ERROR/HTML] '. $prompt, $this->extKey, 3 );
+var_dump( __METHOD__, __LINE__, $content );
+die( );
         }
         return $arr_return;
       }
@@ -2247,9 +2249,7 @@ class tx_autositemap_pi1 extends tslib_pibase
         if( $this->b_drs_error )
         {
           $prompt = 'The sitemap code doesn\'t contains the marker "' . $hashMarkerOuter . '"!';
-          t3lib_div::devlog(' [ERROR/HTML] '. $prompt, $this->extKey, 3 );
-var_dump( __METHOD__, __LINE__, $content );
-die( );
+          t3lib_div::devlog(' [WARN/HTML] '. $prompt, $this->extKey, 3 );
         }
         continue; 
       }
