@@ -2040,13 +2040,6 @@ class tx_autositemap_pi1 extends tslib_pibase
       $subpartMarkerOuterEnd    = '<!-- ' . $hashMarkerOuter . ' end -->';
         // Outer marker
 
-//        // 0.0.4, 120929, 5+
-//        // Outer marker last
-//      $hashMarkerOuterLast          = '###OUTER-LAST UID-' . $uid . '###';    
-//      $subpartMarkerOuterLastBegin  = '<!-- ' . $hashMarkerOuter . ' begin -->';
-//      $subpartMarkerOuterLastEnd    = '<!-- ' . $hashMarkerOuter . ' end -->';
-//        // Outer marker last
-
         // Inner marker
       $hashMarkerInner          = '###INNER-UID-' . $uid . '###';    
       $subpartMarkerInnerBegin  = '<!-- ' . $hashMarkerInner . ' begin -->';
@@ -2079,20 +2072,6 @@ class tx_autositemap_pi1 extends tslib_pibase
       }
         // RETURN : error. Content doesn't contain the current hashMarker
 
-//        // 0.0.4, 120929, 12+
-//        // RETURN : error. Content doesn't contain the current hashMarker
-//      $pos = strpos( $content, $hashMarkerOuterLast );
-//      if( $pos === false )
-//      {
-//        if( $this->b_drs_error )
-//        {
-//          $prompt = 'The sitemap code doesn\'t contains the marker "' . $hashMarkerOuterLast . '"!';
-//          t3lib_div::devlog(' [ERROR/HTML] '. $prompt, $this->extKey, 3 );
-//        }
-//        return $arr_return;
-//      }
-//        // RETURN : error. Content doesn't contain the current hashMarker
-
         // Get the inner wrap for the current menu
       $cObj_name  = $this->conf['html.']['menuMainInnerWrap'];
       $cObj_conf  = $this->conf['html.']['menuMainInnerWrap.'];
@@ -2114,11 +2093,6 @@ class tx_autositemap_pi1 extends tslib_pibase
       $wrapOuter  = $this->cObj->cObjGetSingle( $cObj_name, $cObj_conf );
         // Get the outer wrap for the current menu
 
-//        // 0.0.4, 120929, 5+
-//      $wrapOuterLast  = $this->cObj->cObjGetSingle( $cObj_name, $cObj_conf );
-//        // Get the outer wrap for the current menu
-
-
         // Get the whole menu for the double column - main and subs - inner wrap
       $subpart = $this->cObj->getSubpart( $content, $hashMarkerInner );
         // Wrap it with the inner wrap
@@ -2127,11 +2101,6 @@ class tx_autositemap_pi1 extends tslib_pibase
       $subpart = $subpartMarkerInnerBegin . $subpart . $subpartMarkerInnerEnd;
         // Wrap it with the double column wrap
       $subpart = str_replace( '%content%', $subpart, $wrapOuter );
-//        // 0.0.4, 120929, 4+
-//        // Wrap it with the subpart marker for the outer wrap
-//      $subpart = $subpartMarkerOuterLastBegin . $subpart . $subpartMarkerOuterLastEnd;
-//        // Wrap it with the double column wrap
-//      $subpart = str_replace( '%content%', $subpart, $wrapOuterLast );
         // Wrap it with the subpart marker for the outer wrap
       $subpart = $subpartMarkerOuterBegin . $subpart . $subpartMarkerOuterEnd;
         // Replace CSS class variables with values
@@ -2279,6 +2248,8 @@ class tx_autositemap_pi1 extends tslib_pibase
         {
           $prompt = 'The sitemap code doesn\'t contains the marker "' . $hashMarkerOuter . '"!';
           t3lib_div::devlog(' [ERROR/HTML] '. $prompt, $this->extKey, 3 );
+var_dump( __METHOD__, __LINE__, $content );
+die( );
         }
         continue; 
       }
