@@ -1,19 +1,54 @@
-.tx-autositemap-pi1 { font-size:92%; border-top:1px solid #cdcdcd; margin-left:36px; padding-left:16px; background:#eaebed url(../../images/screen/bkg_sitemap.jpg) top left repeat; }
-.tx-autositemap-pi1 .ym-gbox { border-right:1px solid #cdcdcd; border-top:1px solid #eeeef1; }
-.tx-autositemap-pi1 .ym-gbox .ym-gbox { border:0; }
-.tx-autositemap-pi1 h1 { font-size:145%; margin:16px 16px 0 16px; }
-.tx-autositemap-pi1 h1+h1 { margin-top:32px; }
-.tx-autositemap-pi1 h2 { margin:1em 0 0 0; font-weight:bold; font-size:1em; font-family:helvetica,arial,sans-srif,sans; }
+.tx-autositemap-pi1 { 
+  font-size:92%; 
+}
+.tx-autositemap-pi1 .ym-gbox { 
+  border-right:1px solid #cdcdcd; 
+  border-top:1px solid #eeeef1;
+}
+.tx-autositemap-pi1 .ym-gbox .ym-gbox { 
+  border:0; 
+}
+.tx-autositemap-pi1 h1 {
+  font-size:145%; 
+  margin:16px 16px 0 16px; 
+}
+.tx-autositemap-pi1 h1+h1 {
+  margin-top:32px; 
+}
+.tx-autositemap-pi1 h2 {
+  margin:1em 0 0 0; 
+  font-weight:bold; font-size:1em; 
+}
 .tx-autositemap-pi1 li,
-.tx-autositemap-pi1 a { color:#666; text-decoration:none; }
+.tx-autositemap-pi1 a {
+  color:#666; 
+  text-decoration:none; 
+}
 .tx-autositemap-pi1 h1 a,
-.tx-autositemap-pi1 h2 a { color:#00368c; }
-.tx-autositemap-pi1 a:hover { color:#00a0fd; }
+.tx-autositemap-pi1 h2 a {
+  color:#00368c; 
+}
+.tx-autositemap-pi1 a:hover {
+  color:#00a0fd; 
+}
 .tx-autositemap-pi1 p,
-.tx-autositemap-pi1 ul { margin:0 16px 0 16px; padding-bottom:21px; list-style:none; }
-.tx-autositemap-pi1 li { margin:5px 0 5px 0 !important; padding:0; }
-.tx-autositemap-pi1 ul li ul { margin:0 0 0 0; padding:0; font-size:96%; }
-.tx-autositemap-pi1 .right { padding-top:35px; }
+.tx-autositemap-pi1 ul {
+  margin:0 16px 0 16px; 
+  padding-bottom:21px; 
+  list-style:none; 
+}
+.tx-autositemap-pi1 li {
+  margin:5px 0 5px 0 !important;
+  padding:0; 
+}
+.tx-autositemap-pi1 ul li ul {
+  margin:0 0 0 0; 
+  padding:0; 
+  font-size:96%; 
+}
+.tx-autositemap-pi1 .right {
+  padding-top:35px; 
+}
     
 /**
  * Modified by Dirk Wildt, http://wildt.at.die-netzmacher.de/
