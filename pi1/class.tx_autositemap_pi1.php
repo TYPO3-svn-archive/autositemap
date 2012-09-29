@@ -2413,33 +2413,32 @@ class tx_autositemap_pi1 extends tslib_pibase
 //    }
 //      // Set current page id from TypoScript
 
-      // Set root page id from TypoScript
-    $cObj_name                  = $this->conf['rootline.']['rootpageId'];
-    $cObj_conf                  = $this->conf['rootline.']['rootpageId.'];
-    $this->tsRootlineRootpageid = $this->cObj->cObjGetSingle( $cObj_name, $cObj_conf );
-    if( $this->b_drs_typoscript )
-    {
-      $prompt = 'rootline.rootpageId: ' . $this->tsRootlineRootpageid;
-      t3lib_div::devlog(' [INFO/TYPOSCRIPT] '. $prompt, $this->extKey, 0 );
-    }
+//      // Set root page id from TypoScript
+//    $cObj_name                  = $this->conf['rootline.']['rootpageId'];
+//    $cObj_conf                  = $this->conf['rootline.']['rootpageId.'];
+//    $this->tsRootlineRootpageid = $this->cObj->cObjGetSingle( $cObj_name, $cObj_conf );
+//    if( $this->b_drs_typoscript )
+//    {
+//      $prompt = 'rootline.rootpageId: ' . $this->tsRootlineRootpageid;
+//      t3lib_div::devlog(' [INFO/TYPOSCRIPT] '. $prompt, $this->extKey, 0 );
+//    }
       // Set root page id from TypoScript
 
-      // IF root page id is empty, take root page of current page by default
-    if( empty( $this->tsRootlineRootpageid ) )
-    {
-        // 0.0.4, 120929, 1-
-      //$arr_rowsOfAllPagesInRootLine = $GLOBALS['TSFE']->sys_page->getRootLine( $this->tsRootlineLookfrompageid );
-        // 0.0.4, 120929, 1+
+//      // IF root page id is empty, take root page of current page by default
+//    if( empty( $this->tsRootlineRootpageid ) )
+//    {
+//        // 0.0.4, 120929, 1-
+//      //$arr_rowsOfAllPagesInRootLine = $GLOBALS['TSFE']->sys_page->getRootLine( $this->tsRootlineLookfrompageid );
+//        // 0.0.4, 120929, 1+
       $arr_rowsOfAllPagesInRootLine = $GLOBALS['TSFE']->sys_page->getRootLine( $GLOBALS['TSFE']->id );
       $this->tsRootlineRootpageid = $arr_rowsOfAllPagesInRootLine[0]['uid'];
       if( $this->b_drs_typoscript )
       {
-        $prompt = 'rootline.rootpageId is overriden with calculated root page id: ' .
-                  $this->tsRootlineRootpageid;
+        $prompt = 'rootline.rootpageId : ' . $this->tsRootlineRootpageid;
         t3lib_div::devlog(' [INFO/TYPOSCRIPT] '. $prompt, $this->extKey, 1 );
       }
-    }
-      // IF root page id is empty, take root page of current page by default
+//    }
+//      // IF root page id is empty, take root page of current page by default
 
     if( ( int ) $this->tsRootlineRootpageid == 0 )
     {

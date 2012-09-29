@@ -65,15 +65,6 @@ plugin.tx_autositemap_pi1 {
   menu_margin = 
   menu_margin {
   }
-    // Values for calculating. They have to correspondend with the configuration of menu_main and menu_margin!
-  rootline =
-  rootline {
-      // [INTEGER] uid of the rootpage. Recommended: leave it empty!
-    rootpageId = TEXT
-    rootpageId {
-      value = {$plugin.tx_autositemap_pi1.rootline.rootpageId}
-    }
-  }
    // Rules for number of columns and line break
   rules = 
   rules {

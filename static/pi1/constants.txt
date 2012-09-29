@@ -4,8 +4,6 @@ plugin.tx_autositemap_pi1 {
   rules.priority = oneLineBreak
   # cat=Autositemap - Rules//101;       type=int+;  label= Minimum menu items for a line break: A menu must contains at least this number of submenus or and items, if it should get a line break.
   rules.menuItems.lineBreak = 13
-  # cat=Autositemap - Rules//102;       type=int+;  label= Starting Point: Page id of the root page (recommended: leave ist empty)
-  rootline.rootpageId = 0
 
   # cat=Autositemap - Debugging//101;   type=int+;  label= Enable Debugging: HTML comments will displayed
   debugging = 0
