@@ -1169,7 +1169,7 @@ class tx_autositemap_pi1 extends tslib_pibase
         $uid = $menuId;
         $sum = $this->sumOfLevels[$menuId]['sum'];
 //        $lineBreakBeforeItem = ( int ) ( ( $sum + 1 ) / 2 );
-        $lineBreakBeforeItem = ( int ) ( ( $sum - 1 ) / 2 );
+        $lineBreakBeforeItem = ( int ) ( ( $sum - 2 ) / 2 );
 
         $sumItems               = 0;
         $menuIdForLineBreak     = 0;
