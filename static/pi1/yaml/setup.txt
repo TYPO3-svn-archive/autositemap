@@ -5,6 +5,7 @@
   // plugin.tx_autositemap_pi1.css
   // plugin.tx_autositemap_pi1.html
   // plugin.tx_autositemap_pi1.menu_main
+  // plugin.tx_autositemap_pi1.menu_main_last
   // plugin.tx_autositemap_pi1.menu_margin
 
 
@@ -197,11 +198,28 @@ plugin.tx_autositemap_pi1 {
             </div>
 )
         }
-          // Outer wrap of the greatest main menu in case of a double column
+          // Outer wrap of the main menus in case of a double column
         menuMainOuterWrap = TEXT
         menuMainOuterWrap {
           value (
             <div class="ym-g%mainDouble% ym-gl">                
+              <div class="ym-gbox">
+                <div class="ym-grid">
+                  <div class="ym-g50 ym-gl nopad">
+                    <div class="ym-gbox ym-gbox-left left">
+                      %content%
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+)
+        }
+          // Outer wrap of the last main menu in case of a double column
+        menuMainOuterWrapLast = TEXT
+        menuMainOuterWrapLast {
+          value (
+            <div class="ym-g%mainDouble% ym-gr">                
               <div class="ym-gbox">
                 <div class="ym-grid">
                   <div class="ym-g50 ym-gl nopad">
@@ -245,7 +263,6 @@ plugin.tx_autositemap_pi1 {
           excludeUidList  = 
           1 = TMENU
           1 {
-            //itemArrayProcFunc = user_menuProcFunc->count
             expAll = 1
 
             NO = 1
@@ -256,13 +273,16 @@ plugin.tx_autositemap_pi1 {
                       </h1>
 )
               wrapItemAndSub {
+                  // OUTER-UID begin; DIV wrap begin; INNER-UID begin; item; INNER-UID end; DIV wrap end; OUTER-UID end 
                 cObject = COA
                 cObject {
+                    // OUTER-UID begin
                   10 = TEXT
                   10 {
                     field       = uid
                     noTrimWrap  = |<!-- ###OUTER-UID-|### begin -->|
                   }
+                    // DIV wrap begin
                   20 = TEXT
                   20 {
                     value (
@@ -270,23 +290,28 @@ plugin.tx_autositemap_pi1 {
                         <div class="ym-gbox">
 )
                   }
+                    // INNER-UID begin; item; INNER-UID end
                   30 = COA
                   30 {
+                      // INNER-UID begin
                     10 = TEXT
                     10 {
                       field       = uid
                       noTrimWrap  = |<!-- ###INNER-UID-|### begin -->|
                     }
+                      // Menu item
                     20 = TEXT
                     20 {
                       value = |
                     }
+                      // INNER-UID end
                     30 = TEXT
                     30 {
                       field       = uid
                       noTrimWrap  = |<!-- ###INNER-UID-|### end -->|
                     }
                   }
+                    // DIV wrap end
                   40 = TEXT
                   40 {
                     value (
@@ -294,6 +319,7 @@ plugin.tx_autositemap_pi1 {
                       </div>
 )
                   }
+                    // OUTER-UID end
                   50 = TEXT
                   50 {
                     field       = uid
@@ -361,7 +387,6 @@ plugin.tx_autositemap_pi1 {
           }
           2 = TMENU
           2 {
-            //itemArrayProcFunc = user_menuProcFunc->count
             expAll = 1
 
             NO = 1
@@ -514,7 +539,6 @@ plugin.tx_autositemap_pi1 {
           }
           3 = TMENU
           3 {
-            //itemArrayProcFunc = user_menuProcFunc->count
             expAll = 1
 
             NO = 1
@@ -580,6 +604,96 @@ plugin.tx_autositemap_pi1 {
             SPC.doNotShowLink = 1
 
             wrap = <ul class="navi-ul">|</ul>
+          }
+        }
+        menu_main_last < .menu_main
+        menu_main_last {
+          1 {
+            NO {
+              wrapItemAndSub {
+                cObject {
+                  20 {
+                    value (
+                      <div class="ym-g%main% ym-gr">
+                        <div class="ym-gbox">
+)
+                  }
+                }
+              }
+            }
+            IFSUB {
+              wrapItemAndSub {
+                cObject {
+                  20 {
+                    value (
+                      <div class="ym-g%main% ym-gr">
+                        <div class="ym-gbox">
+)
+                  }
+                }
+              }
+            }
+            CUR {
+              wrapItemAndSub {
+                cObject {
+                  20 {
+                    value (
+                      <div class="ym-g%main% ym-gr">
+                        <div class="ym-gbox">
+)
+                  }
+                }
+              }
+            }
+            CURIFSUB {
+              wrapItemAndSub {
+                cObject {
+                  20 {
+                    value (
+                      <div class="ym-g%main% ym-gr">
+                        <div class="ym-gbox">
+)
+                  }
+                }
+              }
+            }
+            ACT {
+              wrapItemAndSub {
+                cObject {
+                  20 {
+                    value (
+                      <div class="ym-g%main% ym-gr">
+                        <div class="ym-gbox">
+)
+                  }
+                }
+              }
+            }
+            ACTIFSUB {
+              wrapItemAndSub {
+                cObject {
+                  20 {
+                    value (
+                      <div class="ym-g%main% ym-gr">
+                        <div class="ym-gbox">
+)
+                  }
+                }
+              }
+            }
+            SPC {
+              wrapItemAndSub {
+                cObject {
+                  20 {
+                    value (
+                      <div class="ym-g%main% ym-gr">
+                        <div class="ym-gbox">
+)
+                  }
+                }
+              }
+            }
+            wrap = |
           }
         }
         menu_margin < .menu_main
@@ -663,6 +777,17 @@ plugin.tx_autositemap_pi1 {
 
 plugin.tx_autositemap_pi1 {
   menu_main < plugin.tx_autositemap_pi1.master_templates.yaml.menus.menu_main
+}
+  // plugin.tx_autositemap_pi1.menu_main
+
+
+
+  ////////////////////////////////////////////////////////////
+  //
+  // plugin.tx_autositemap_pi1.menu_main
+
+plugin.tx_autositemap_pi1 {
+  menu_main_last < plugin.tx_autositemap_pi1.master_templates.yaml.menus.menu_main_last
 }
   // plugin.tx_autositemap_pi1.menu_main
 

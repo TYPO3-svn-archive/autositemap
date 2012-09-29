@@ -15,7 +15,7 @@ plugin.tx_autositemap_pi1 {
       // [BOOLEAN] HTML comments. 0: remove it (recommended). 1: don't remove it (for debugging)
     dontRemoveHtmlComments = TEXT
     dontRemoveHtmlComments {
-      value = 0
+      value = {$plugin.tx_autositemap_pi1.debugging}
     }
   }
     // HTML snippets. They will taken at runtime.
@@ -68,11 +68,6 @@ plugin.tx_autositemap_pi1 {
     // Values for calculating. They have to correspondend with the configuration of menu_main and menu_margin!
   rootline =
   rootline {
-      // [INTEGER] uid of the current page. Recommended: data = page:uid
-    lookFromPageId = TEXT
-    lookFromPageId {
-      data = page:uid
-    }
       // [INTEGER] uid of the rootpage. Recommended: leave it empty!
     rootpageId = TEXT
     rootpageId {
@@ -88,7 +83,7 @@ plugin.tx_autositemap_pi1 {
         // If a menu has more than x items, insert a line break
       lineBreak = TEXT
       lineBreak {
-        value = 13
+        value = {$plugin.tx_autositemap_pi1.rules.menuItems.lineBreak}
       }
     }
       // Number of columns from first to forth menu: DON'T TOUCH IT!
@@ -104,7 +99,7 @@ plugin.tx_autositemap_pi1 {
     priority = TEXT
     priority {
         // [STRING] maxLineBreaks | oneLineBreak | noLineBreak
-      value = oneLineBreak
+      value = {$plugin.tx_autositemap_pi1.rules.priority}
     }
   }
     // SQL statements

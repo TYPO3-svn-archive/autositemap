@@ -52,7 +52,7 @@ define('TX_AUTOSITEMAP_PI1_PRIORITY_ONELINEBREAK',   300 );
  * @package    TYPO3
  * @subpackage  autositemap
  *
- * @version 0.0.3
+ * @version 0.0.4
  * @since 0.0.1
  */
 
@@ -826,17 +826,6 @@ class tx_autositemap_pi1 extends tslib_pibase
   {
     $this->calcExcludeUidListMain( );
     $this->calcExcludeUidListMargin( );
-      // 120716, dwildt-
-//    switch( $mainOrMargin )
-//    {
-//      case( 'margin' ):
-//        $this->calcExcludeUidListMargin( );
-//        break;
-//      case( 'main' ):
-//      default:
-//        $this->calcExcludeUidListMain( );
-//        break;
-//    }
   }
 
 
@@ -850,6 +839,11 @@ class tx_autositemap_pi1 extends tslib_pibase
  */
   private function calcExcludeUidListMain( )
   {
+      // 0.0.4, 120929
+    $arrUidListForMain            = null;
+    $arrExcludeUidListForMain     = null;
+    $arrExcludeUidListForMainLast = null;
+
       // Short variable
     $pagetreeStructure = $this->pagetreeStructure[$this->tsRootlineRootpageid]; 
     
@@ -859,41 +853,73 @@ class tx_autositemap_pi1 extends tslib_pibase
     //$end    = $this->tsRulesNumberofcolumnsMain;
       // 120716, dwildt+
     $end    = $this->numberOfMenusForMainColumns;
+//var_dump( __CLASS__, __LINE__, array_keys( $pagetreeStructure ), $this->numberOfMenusForMainColumns );    
       // FOREACH  : Get excludeUidList
     foreach( array_keys( $pagetreeStructure ) as $key )
     {
         // CONTINUE : menu item should displayed
       if( $start < $end )
       {
+        $arrUidListForMain[ ] = $pagetreeStructure[$key]['uid'];
         $start++;
         continue;
       }
         // CONTINUE : menu item should displayed
 
         // Menu item shouldn't displayed
-      $arrExcludeUidList[] = $pagetreeStructure[$key]['uid'];
+      $arrExcludeUidListForMain[ ] = $pagetreeStructure[$key]['uid'];
       $start++;
     }
       // FOREACH  : Get excludeUidList
     
-      // Get excludeUidList
-    $excludeUidList = implode( ',', $arrExcludeUidList );
+      // 0.0.4, 120929, +
+      // Get list of uid of the menu margin
+    $uidListMargin      = implode( ',', $arrExcludeUidListForMain );
+      // Get uid of the last main menu
+    $uidOfMainLast      = $arrUidListForMain[ count( $arrUidListForMain ) -1 ];
+      // Set exclude uid list for the main menu (without the last main menu)
+    $excludeUidsInMain  = $uidOfMainLast . ',' . $uidListMargin;
+    
+      // Unset the uid of the last main menu
+    unset( $arrUidListForMain[ count( $arrUidListForMain ) -1 ] );
+      // Get list of uid of the menu main
+    $uidListMain            = implode( ',', $arrUidListForMain );
+      // Set exclude uid list for the main menu (without the last main menu)
+    $excludeUidsInMainLast  = $uidListMain . ',' . $uidListMargin;
     
       // Set excludeUidList
-    $this->conf['menu_main.']['excludeUidList'] = $excludeUidList;
+    $this->conf['menu_main.']['excludeUidList']       = $excludeUidsInMain;
+      // 0.0.4, 120929, dwildt, 1+
+    $this->conf['menu_main_last.']['excludeUidList']  = $excludeUidsInMainLast;
 
-    // DRS
+      // DRS
     if( $this->b_drs_calc )
     {
-      if( empty( $excludeUidList ) )
+        // Menu Main
+      if( empty( $excludeUidsInMain ) )
       {
         $prompt = 'menu_main.excludeUidList is left empty.';
       }
-      if( ! empty( $excludeUidList ) )
+      if( ! empty( $excludeUidsInMain ) )
       {
-        $prompt = 'menu_main.excludeUidList is set to ' . $excludeUidList;
+        $prompt = 'menu_main.excludeUidList is set to ' . $excludeUidsInMain;
       }
       t3lib_div :: devLog( '[INFO/CALC] ' . $prompt , $this->extKey, 0 );
+        // Menu Main
+        
+        // 0.0.4, 120929, dwildt, +
+        // Menu Main Last
+      if( empty( $excludeUidsInMainLast ) )
+      {
+        $prompt = 'menu_main_last.excludeUidList is left empty.';
+      }
+      if( ! empty( $excludeUidsInMainLast ) )
+      {
+        $prompt = 'menu_main_last.excludeUidList is set to ' . $excludeUidsInMainLast;
+      }
+      t3lib_div :: devLog( '[INFO/CALC] ' . $prompt , $this->extKey, 0 );
+        // Menu Main Last
+        // 0.0.4, 120929, dwildt, +
     }
       // DRS
   }
@@ -1100,11 +1126,11 @@ class tx_autositemap_pi1 extends tslib_pibase
       switch( $this->onlyOneOfTheFirstThreeMenusIsWithLineBreak )
       {
         case( true ):
-          $prompt = 'One of the first three menus is with a line break only.' ;
+          $prompt = 'Only one of the first three menus is with a line break only.' ;
           break;
         case( false ):
         default:
-          $prompt = 'Anyone or more than one of the first three menus is with a line break only.' ;
+          $prompt = 'No one or more than one of the first three menus is with a line break.' ;
           break;
       }
       t3lib_div :: devLog( '[INFO/CALC] ' . $prompt , $this->extKey, 0 );
@@ -1115,7 +1141,7 @@ class tx_autositemap_pi1 extends tslib_pibase
           break;
         case( false ):
         default:
-          $prompt = 'Any one of the first three menus is the greatest menu.' ;
+          $prompt = 'No one of the first three menus isn\'t the greatest menu.' ;
           break;
       }
       t3lib_div :: devLog( '[INFO/CALC] ' . $prompt , $this->extKey, 0 );
@@ -1672,20 +1698,30 @@ class tx_autositemap_pi1 extends tslib_pibase
  * columnsRenderMain( ): 
  *
  * @return    array        $arr_return  : data[content] contains the hierachical menu
- * @version 0.0.2
+ * @version 0.0.4
  * @since   0.0.2
  */
   private function columnsRenderMain( )
   {
     $arr_return = array( );
     
+      // Render the hierachical menu (main menu)
       // Get TypoScript configuration for the hierachical menu
     $cObj_name  = $this->conf['menu_main'];
     $cObj_conf  = $this->conf['menu_main.'];
+    $hmenuMain  = $this->cObj->cObjGetSingle( $cObj_name, $cObj_conf );
+      // Render the hierachical menu (main menu)
+
+      // 0.0.4, dwildt, +
+      // Render the hierachical menu (main menu last)
       // Get TypoScript configuration for the hierachical menu
-      
-      // Render the hierachical menu
-    $hmenu = $this->cObj->cObjGetSingle( $cObj_name, $cObj_conf );
+    $cObj_name      = $this->conf['menu_main_last'];
+    $cObj_conf      = $this->conf['menu_main_last.'];
+    $hmenuMainLast  = $this->cObj->cObjGetSingle( $cObj_name, $cObj_conf );
+      // Render the hierachical menu (main menu last)
+    
+    $hmenu = $hmenuMain . $hmenuMainLast;
+      // 0.0.4, dwildt, +
 
       // SWITCH : case
     switch( $this->case )
@@ -1986,7 +2022,7 @@ class tx_autositemap_pi1 extends tslib_pibase
  * htmlMenuWrapMainmenuMultiple( ): 
  *
  * @return    array        $arr_return  : data[content] contains the sitemap
- * @version 0.0.2
+ * @version 0.0.4
  * @since   0.0.2
  */
   private function htmlMenuWrapMainmenuMultiple( $content )
@@ -1994,13 +2030,22 @@ class tx_autositemap_pi1 extends tslib_pibase
     $arr_return = array( );
     $arr_return['data']['content'] = $content;
       
-    foreach( array_keys( $this->menusWithLinebreak ) as $uid )
+    $arrUids = array_keys( $this->menusWithLinebreak );
+    $uidLast = $arrUids[ count( $arrUids ) - 1 ];
+    foreach( $arrUids as $uid )
     {
         // Outer marker
       $hashMarkerOuter          = '###OUTER-UID-' . $uid . '###';    
       $subpartMarkerOuterBegin  = '<!-- ' . $hashMarkerOuter . ' begin -->';
       $subpartMarkerOuterEnd    = '<!-- ' . $hashMarkerOuter . ' end -->';
         // Outer marker
+
+//        // 0.0.4, 120929, 5+
+//        // Outer marker last
+//      $hashMarkerOuterLast          = '###OUTER-LAST UID-' . $uid . '###';    
+//      $subpartMarkerOuterLastBegin  = '<!-- ' . $hashMarkerOuter . ' begin -->';
+//      $subpartMarkerOuterLastEnd    = '<!-- ' . $hashMarkerOuter . ' end -->';
+//        // Outer marker last
 
         // Inner marker
       $hashMarkerInner          = '###INNER-UID-' . $uid . '###';    
@@ -2034,6 +2079,20 @@ class tx_autositemap_pi1 extends tslib_pibase
       }
         // RETURN : error. Content doesn't contain the current hashMarker
 
+//        // 0.0.4, 120929, 12+
+//        // RETURN : error. Content doesn't contain the current hashMarker
+//      $pos = strpos( $content, $hashMarkerOuterLast );
+//      if( $pos === false )
+//      {
+//        if( $this->b_drs_error )
+//        {
+//          $prompt = 'The sitemap code doesn\'t contains the marker "' . $hashMarkerOuterLast . '"!';
+//          t3lib_div::devlog(' [ERROR/HTML] '. $prompt, $this->extKey, 3 );
+//        }
+//        return $arr_return;
+//      }
+//        // RETURN : error. Content doesn't contain the current hashMarker
+
         // Get the inner wrap for the current menu
       $cObj_name  = $this->conf['html.']['menuMainInnerWrap'];
       $cObj_conf  = $this->conf['html.']['menuMainInnerWrap.'];
@@ -2041,10 +2100,23 @@ class tx_autositemap_pi1 extends tslib_pibase
         // Get the inner wrap for the current menu
 
         // Get the outer wrap for the current menu
-      $cObj_name  = $this->conf['html.']['menuMainOuterWrap'];
-      $cObj_conf  = $this->conf['html.']['menuMainOuterWrap.'];
+      switch( $uid )
+      {
+        case( $uidLast ):
+          $cObj_name      = $this->conf['html.']['menuMainOuterWrapLast'];
+          $cObj_conf      = $this->conf['html.']['menuMainOuterWrapLast.'];
+          break;
+        default:
+          $cObj_name  = $this->conf['html.']['menuMainOuterWrap'];
+          $cObj_conf  = $this->conf['html.']['menuMainOuterWrap.'];
+          break;
+      }
       $wrapOuter  = $this->cObj->cObjGetSingle( $cObj_name, $cObj_conf );
         // Get the outer wrap for the current menu
+
+//        // 0.0.4, 120929, 5+
+//      $wrapOuterLast  = $this->cObj->cObjGetSingle( $cObj_name, $cObj_conf );
+//        // Get the outer wrap for the current menu
 
 
         // Get the whole menu for the double column - main and subs - inner wrap
@@ -2055,6 +2127,11 @@ class tx_autositemap_pi1 extends tslib_pibase
       $subpart = $subpartMarkerInnerBegin . $subpart . $subpartMarkerInnerEnd;
         // Wrap it with the double column wrap
       $subpart = str_replace( '%content%', $subpart, $wrapOuter );
+//        // 0.0.4, 120929, 4+
+//        // Wrap it with the subpart marker for the outer wrap
+//      $subpart = $subpartMarkerOuterLastBegin . $subpart . $subpartMarkerOuterLastEnd;
+//        // Wrap it with the double column wrap
+//      $subpart = str_replace( '%content%', $subpart, $wrapOuterLast );
         // Wrap it with the subpart marker for the outer wrap
       $subpart = $subpartMarkerOuterBegin . $subpart . $subpartMarkerOuterEnd;
         // Replace CSS class variables with values
@@ -2313,50 +2390,56 @@ class tx_autositemap_pi1 extends tslib_pibase
  * initRootPageId( ): 
  *
  * @return    array        $arr_return  : data[rootpageId] contain the id of the root page
- * @version 0.0.2
+ * @version 0.0.4
  * @since   0.0.2
  */
   private function initRootPageId( )
   {
     $arr_return = null;
     
-      // Set current page id from TypoScript
-    if( empty( $this->tsRootlineLookfrompageid ) )
-    {
-      $this->tsRootlineLookfrompageid = $GLOBALS['TSFE']->id;
-      if( $this->b_drs_typoscript )
-      {
-        $prompt = 'rootline.lookFromPageId was empty!';
-        t3lib_div::devlog(' [WARN/TYPOSCRIPT] '. $prompt, $this->extKey, 2 );
-        $prompt = 'rootline.lookFromPageId is overriden with current page id: ' .
-                  $this->tsRootlineLookfrompageid;
-        t3lib_div::devlog(' [INFO/TYPOSCRIPT] '. $prompt, $this->extKey, 1 );
-      }
-    }
-      // Set current page id from TypoScript
+      // 0.0.4, 120929
+//      // Set current page id from TypoScript
+//    if( empty( $this->tsRootlineLookfrompageid ) )
+//    {
+//      $this->tsRootlineLookfrompageid = $GLOBALS['TSFE']->id;
+//      if( $this->b_drs_typoscript )
+//      {
+//        $prompt = 'rootline.lookFromPageId was empty!';
+//        t3lib_div::devlog(' [WARN/TYPOSCRIPT] '. $prompt, $this->extKey, 2 );
+//        $prompt = 'rootline.lookFromPageId is overriden with current page id: ' .
+//                  $this->tsRootlineLookfrompageid;
+//        t3lib_div::devlog(' [INFO/TYPOSCRIPT] '. $prompt, $this->extKey, 1 );
+//      }
+//    }
+//      // Set current page id from TypoScript
 
-      // Set current page id from TypoScript
+      // Set root page id from TypoScript
+    $cObj_name                  = $this->conf['rootline.']['rootpageId'];
+    $cObj_conf                  = $this->conf['rootline.']['rootpageId.'];
     $this->tsRootlineRootpageid = $this->cObj->cObjGetSingle( $cObj_name, $cObj_conf );
     if( $this->b_drs_typoscript )
     {
       $prompt = 'rootline.rootpageId: ' . $this->tsRootlineRootpageid;
       t3lib_div::devlog(' [INFO/TYPOSCRIPT] '. $prompt, $this->extKey, 0 );
     }
+      // Set root page id from TypoScript
 
+      // IF root page id is empty, take root page of current page by default
     if( empty( $this->tsRootlineRootpageid ) )
     {
-      $arr_rowsOfAllPagesInRootLine = $GLOBALS['TSFE']->sys_page->getRootLine( $this->tsRootlineLookfrompageid );
+        // 0.0.4, 120929, 1-
+      //$arr_rowsOfAllPagesInRootLine = $GLOBALS['TSFE']->sys_page->getRootLine( $this->tsRootlineLookfrompageid );
+        // 0.0.4, 120929, 1+
+      $arr_rowsOfAllPagesInRootLine = $GLOBALS['TSFE']->sys_page->getRootLine( $GLOBALS['TSFE']->id );
       $this->tsRootlineRootpageid = $arr_rowsOfAllPagesInRootLine[0]['uid'];
       if( $this->b_drs_typoscript )
       {
-        $prompt = 'rootline.rootpageId is empty. This is proper.';
-        t3lib_div::devlog(' [OK/TYPOSCRIPT] '. $prompt, $this->extKey, -1 );
         $prompt = 'rootline.rootpageId is overriden with calculated root page id: ' .
                   $this->tsRootlineRootpageid;
         t3lib_div::devlog(' [INFO/TYPOSCRIPT] '. $prompt, $this->extKey, 1 );
       }
     }
-      // Set current page id from TypoScript
+      // IF root page id is empty, take root page of current page by default
 
     if( ( int ) $this->tsRootlineRootpageid == 0 )
     {
@@ -2408,24 +2491,31 @@ class tx_autositemap_pi1 extends tslib_pibase
     }
       // debugging.dontRemoveHtmlComments
 
-      // rootline.lookFromPageId
-    $cObj_name                      = $this->conf['rootline.']['lookFromPageId'];
-    $cObj_conf                      = $this->conf['rootline.']['lookFromPageId.'];
-    $this->tsRootlineLookfrompageid = $this->cObj->cObjGetSingle( $cObj_name, $cObj_conf );
-    if( $this->b_drs_typoscript )
-    {
-      $prompt = 'rootline.lookFromPageId: ' . $this->tsRootlineLookfrompageid;
-      t3lib_div::devlog(' [INFO/TYPOSCRIPT] '. $prompt, $this->extKey, 0 );
-    }
-      // rootline.lookFromPageId
+      // 0.0.4, 120929, -
+//      // rootline.lookFromPageId
+//    $cObj_name                      = $this->conf['rootline.']['lookFromPageId'];
+//    $cObj_conf                      = $this->conf['rootline.']['lookFromPageId.'];
+//    $this->tsRootlineLookfrompageid = $this->cObj->cObjGetSingle( $cObj_name, $cObj_conf );
+//    if( $this->b_drs_typoscript )
+//    {
+//      $prompt = 'rootline.lookFromPageId: ' . $this->tsRootlineLookfrompageid;
+//      t3lib_div::devlog(' [INFO/TYPOSCRIPT] '. $prompt, $this->extKey, 0 );
+//    }
+//      // rootline.lookFromPageId
 
       // rootline.rootpageId
-    $cObj_name                = $this->conf['rootline.']['rootpageId'];
-    $cObj_conf                = $this->conf['rootline.']['rootpageId.'];
+    $cObj_name                  = $this->conf['rootline.']['rootpageId'];
+    $cObj_conf                  = $this->conf['rootline.']['rootpageId.'];
     $this->tsRootlineRootpageid = $this->cObj->cObjGetSingle( $cObj_name, $cObj_conf );
     if( $this->b_drs_typoscript )
     {
       $prompt = 'rootline.rootpageId: ' . $this->tsRootlineRootpageid;
+        // 0.0.4, 120929, +
+      if( empty( $this->tsRootlineRootpageid ) )
+      {
+        $prompt = 'rootline.rootpageId is empty. This is OK.';
+      }
+        // 0.0.4, 120929, +
       t3lib_div::devlog(' [INFO/TYPOSCRIPT] '. $prompt, $this->extKey, 0 );
     }
       // rootline.rootpageId
@@ -2463,16 +2553,18 @@ class tx_autositemap_pi1 extends tslib_pibase
     }
       // rules.numberOfColumns.main
 
-      // rules.numberOfColumns.margin
-    $cObj_name                  = $this->conf['rules.']['numberOfColumns.']['margin'];
-    $cObj_conf                  = $this->conf['rules.']['numberOfColumns.']['margin.'];
-    $this->tsRulesNumberofcolumnsMargin = $this->cObj->cObjGetSingle( $cObj_name, $cObj_conf );
-    if( $this->b_drs_typoscript )
-    {
-      $prompt = 'rules.numberOfColumns.margin: ' . $this->tsRulesNumberofcolumnsMargin;
-      t3lib_div::devlog(' [INFO/TYPOSCRIPT] '. $prompt, $this->extKey, 0 );
-    }
-      // rules.numberOfColumns.margin
+    // 0.0.4, 120929, -
+//      // rules.numberOfColumns.margin
+//    $cObj_name                  = $this->conf['rules.']['numberOfColumns.']['margin'];
+//    $cObj_conf                  = $this->conf['rules.']['numberOfColumns.']['margin.'];
+//    $this->tsRulesNumberofcolumnsMargin = $this->cObj->cObjGetSingle( $cObj_name, $cObj_conf );
+//    if( $this->b_drs_typoscript )
+//    {
+//      $prompt = 'rules.numberOfColumns.margin: ' . $this->tsRulesNumberofcolumnsMargin;
+//      t3lib_div::devlog(' [INFO/TYPOSCRIPT] '. $prompt, $this->extKey, 0 );
+//    }
+//      // rules.numberOfColumns.margin
+    // 0.0.4, 120929, -
       
       // rules.priority
     $cObj_name                  = $this->conf['rules.']['priority'];
@@ -2513,7 +2605,7 @@ class tx_autositemap_pi1 extends tslib_pibase
     {
       $prompt = 'sql.pages.andWhere: ' . $this->tsSqlPagesAndwhere;
       t3lib_div::devlog(' [INFO/TYPOSCRIPT] '. $prompt, $this->extKey, 0 );
-      $prompt = 'Be aware: the andWhere statement from above must correspondend with your HMENU TypoScript ' .
+      $prompt = 'Be aware: the andWhere statement from above must correspond with your HMENU TypoScript ' .
                 'configuration!';
       t3lib_div::devlog(' [WARN/TYPOSCRIPT] '. $prompt, $this->extKey, 2 );
       $prompt = 'Example: If you display pages with another doktype too, you have to adapt the andWhere statement.';
@@ -2609,14 +2701,14 @@ class tx_autositemap_pi1 extends tslib_pibase
       }
         // ERROR  : Number of CSS classes doesn't correspondent with number of defined menu cases
       
-        // OK : Number of CSS classes correspondents with number of defined menu cases
-      $prompt = 'The number of CSS classes (#' . $numberOfCssClasses . ') correspondents ' . 
+        // OK : Number of CSS classes corresponds with number of defined menu cases
+      $prompt = 'The number of CSS classes (#' . $numberOfCssClasses . ') corresponds ' . 
                 'with the number of defined menu cases (#' . $numberOfMenuCases . ').';
       t3lib_div::devlog(' [OK/TYPOSCRIPT] '. $prompt, $this->extKey, -1 );
       $csvMenuCases = var_export( $menuCases, true );
       $prompt = 'Defined menu cases are: ' . $csvMenuCases . '.';
       t3lib_div::devlog(' [INFO/TYPOSCRIPT] '. $prompt, $this->extKey, 0 );
-        // OK : Number of CSS classes correspondents with number of defined menu cases
+        // OK : Number of CSS classes corresponds with number of defined menu cases
 //      var_dump( __METHOD__, __LINE__, $this->tsCssClasses, $menuCases );
     }
       // DRS

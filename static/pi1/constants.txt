@@ -1,0 +1,12 @@
+plugin.tx_autositemap_pi1 {
+
+  # cat=Autositemap - Rules//100;       type=options[maxLineBreaks,oneLineBreak,noLineBreak];  label= Priority: maxLineBreaks: If menus have enough items, they become double columns. oneLineBreak: The greeatest menu will get a double column. noLineBreak: If there are enough menus, each menu becomes one column only.
+  rules.priority = oneLineBreak
+  # cat=Autositemap - Rules//101;       type=int+;  label= Line break: A menu must contains at least this number of submenus or and items, if it should get a line break.
+  rules.menuItems.lineBreak = 13
+  # cat=Autositemap - Rules//102;       type=int+;  label= Starting Point: Page id of the root page (recommended: leave ist empty)
+  rootline.rootpageId = 0
+
+  # cat=Autositemap - Debugging//101;   type=int+;  label= Enable Debugging: HTML comments will displayed
+  debugging = 0
+}
