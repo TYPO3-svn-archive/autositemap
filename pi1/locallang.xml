@@ -21,13 +21,19 @@
         </h2>        
         <ul style="list-style:disc inside">
           <li style="display:list-item">
-            Did you include an additional static template?
+            You didn't include the static template.
+          </li>
+          <li style="display:list-item">
+            You didn't include an additional static template.
           </li>
         </ul>        
         <h2>
           Possible fix
         </h2>        
         <ul style="list-style:disc inside">
+          <li style="display:list-item">
+            Include the static template "Autositemap (autositemap)."
+          </li>
           <li style="display:list-item">
             Include an additional static template like "+Autositemap YAML (autositemap)."
           </li>
@@ -52,7 +58,10 @@
         </h2>        
         <ul style="list-style:disc inside">
           <li style="display:list-item">
-            Hast Du ein zus&auml;tzliches Static Template eingebunden?
+            Du hast kein Static Template eingebunden.
+          </li>
+          <li style="display:list-item">
+            Du hast kein zus&auml;tzliches Static Template eingebunden.
           </li>
         </ul>        
         <h2>
@@ -60,7 +69,10 @@
         </h2>        
         <ul style="list-style:disc inside">
           <li style="display:list-item">
-            Binde ein Static Template wie "+Autositemap YAML (autositemap)" ein.
+            Binde das Static Template "Autositemap (autositemap)".
+          </li>
+          <li style="display:list-item">
+            Binde ein zus&auml;tzliches Static Template wie "+Autositemap YAML (autositemap)" ein.
           </li>
         </ul>        
       ]]></label>
