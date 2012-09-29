@@ -1,0 +1,124 @@
+
+
+  ////////////////////////////////////////////////////////////
+  //
+  // plugin.tx_autositemap_pi1
+
+plugin.tx_autositemap_pi1 {
+    // Values for css controlling: widths of the columns
+  css =
+  css {
+  }
+    // Debugging support
+  debugging =
+  debugging {
+      // [BOOLEAN] HTML comments. 0: remove it (recommended). 1: don't remove it (for debugging)
+    dontRemoveHtmlComments = TEXT
+    dontRemoveHtmlComments {
+      value = 0
+    }
+  }
+    // HTML snippets. They will taken at runtime.
+  html =
+  html {
+      // Wrap of the sitemap
+    sitemap = TEXT
+    sitemap {
+    }
+      // Outer wrap of the greatest main menu in case of a double column
+    menuMainOuterWrap = TEXT
+    menuMainOuterWrap {
+    }
+      // Inner wrap of the greatest main menu in case of a double column
+    menuMainInnerWrap = TEXT
+    menuMainInnerWrap {
+    }
+      // Outer wrap of the first sub menu in the second (right) coloumn in case of a double column
+    menuSubOuterWrap = TEXT
+    menuSubOuterWrap {
+    }
+  }
+    // TypoScript masters for copying 
+  master_templates =
+  master_templates {
+    default =
+    default {
+        // Values for css controlling: widths of the columns
+      css =
+      css {
+      }
+        // HTML snippets. They will taken at runtime.
+      html =
+      html {
+      }
+        // Configuration og menu_main and menu_margin
+      menus =
+      menus {
+      }
+    }
+  }
+    // Configuration of menus for the main columns. Please use the draft like: plugin.tx_autositemap_pi1.menu_main < plugin.tx_autositemap_pi1.master_templates.hmenu
+  menu_main = 
+  menu_main {
+  }
+    // Configuration of menus for the margin column. Please use the draft like: plugin.tx_autositemap_pi1.menu_margin < plugin.tx_autositemap_pi1.master_templates.hmenu
+  menu_margin = 
+  menu_margin {
+  }
+    // Values for calculating. They have to correspondend with the configuration of menu_main and menu_margin!
+  rootline =
+  rootline {
+      // [INTEGER] uid of the current page. Recommended: data = page:uid
+    lookFromPageId = TEXT
+    lookFromPageId {
+      data = page:uid
+    }
+      // [INTEGER] uid of the rootpage. Recommended: leave it empty!
+    rootpageId = TEXT
+    rootpageId {
+      value = 
+    }
+  }
+   // Rules for number of columns and line break
+  rules = 
+  rules {
+      // Minimum of submenus and items for a line break
+    menuItems =
+    menuItems {
+        // If a menu has more than x items, insert a line break
+      lineBreak = TEXT
+      lineBreak {
+        value = 13
+      }
+    }
+      // Number of columns from first to forth menu: DON'T TOUCH IT!
+    numberOfColumns =
+    numberOfColumns {
+        // number of main columns: DON'T EDIT THIS VALUE!
+      main = TEXT
+      main {
+        value = 4
+      }
+    }
+      // Priority 
+    priority = TEXT
+    priority {
+        // [STRING] maxLineBreaks | oneLineBreak | noLineBreak
+      value = oneLineBreak
+    }
+  }
+    // SQL statements
+  sql = 
+  sql {
+      // Table
+    pages = 
+    pages {
+      andWhere = TEXT
+      andWhere {
+        value       = AND doktype = 1 AND nav_hide = 0
+        noTrimWrap  = | ||
+      }
+    }
+  }
+}
+  // plugin.tx_autositemap_pi1

@@ -1,0 +1,70 @@
+
+plugin.tx_autositemap_pi1 {
+   // Rules for number of columns and line break
+  rules = 
+  rules {
+      // Minimum of submenus and items for a line break
+    menuItems =
+    menuItems {
+        // If a menu has more than x items, insert a line break
+      lineBreak = TEXT
+      lineBreak {
+        value = 13
+      }
+    }
+      // Number of columns from first to forth menu: DON'T TOUCH IT!
+    numberOfColumns =
+    numberOfColumns {
+        // number of main columns: DON'T EDIT THIS VALUE!
+      main = TEXT
+      main {
+        value = 4
+      }
+    }
+  }
+    // SQL statements
+  sql = 
+  sql {
+      // Table
+    pages = 
+    pages {
+      andWhere = TEXT
+      andWhere {
+        value       = AND doktype = 1 AND nav_hide = 0
+        noTrimWrap  = | ||
+      }
+    }
+  }
+}
+  // plugin.tx_autositemap_pi1
+
+
+
+  ////////////////////////////////////////////////////////////
+  //
+  // plugin.tx_autositemap_pi1 gets master_template
+
+plugin.tx_autositemap_pi1 {
+
+  menu_main < plugin.tx_autositemap_pi1.master_templates.hmenu
+
+  menu_margin < plugin.tx_autositemap_pi1.master_templates.hmenu
+  menu_margin {
+    1.NO.wrapItemAndSub >
+    1.IFSUB.wrapItemAndSub >
+    1.CUR.wrapItemAndSub >
+    1.CURIFSUB.wrapItemAndSub >
+    1.ACT.wrapItemAndSub >
+    1.ACRIFSUB.wrapItemAndSub >
+    1.SPC.wrapItemAndSub >
+    1.wrap (
+              <div class="ym-g%margin% ym-gl">
+                <div class="ym-gbox">
+                |
+                </div>
+              </div>
+)
+    3 >
+  }
+}
+  // plugin.tx_autositemap_pi1 gets master_template
