@@ -1168,7 +1168,8 @@ class tx_autositemap_pi1 extends tslib_pibase
 //var_dump( __METHOD__, __LINE__, $menuId );
         $uid = $menuId;
         $sum = $this->sumOfLevels[$menuId]['sum'];
-        $lineBreakBeforeItem = ( int ) ( ( $sum + 1 ) / 2 );
+//        $lineBreakBeforeItem = ( int ) ( ( $sum + 1 ) / 2 );
+        $lineBreakBeforeItem = ( int ) ( ( $sum - 1 ) / 2 );
 
         $sumItems               = 0;
         $menuIdForLineBreak     = 0;
@@ -2053,7 +2054,7 @@ class tx_autositemap_pi1 extends tslib_pibase
         if( $this->b_drs_error )
         {
           $prompt = 'The sitemap code doesn\'t contains the marker "' . $hashMarkerInner . '"!';
-          t3lib_div::devlog(' [WARN/HTML] '. $prompt, $this->extKey, 3 );
+          t3lib_div::devlog(' [WARN/HTML] '. $prompt, $this->extKey, 2 );
         }
           // 0.0.4, 120929, 1-
         //return $arr_return;
@@ -2071,7 +2072,7 @@ class tx_autositemap_pi1 extends tslib_pibase
         if( $this->b_drs_error )
         {
           $prompt = 'The sitemap code doesn\'t contains the marker "' . $hashMarkerOuter . '"!';
-          t3lib_div::devlog(' [WARN/HTML] '. $prompt, $this->extKey, 3 );
+          t3lib_div::devlog(' [WARN/HTML] '. $prompt, $this->extKey, 2 );
         }
           // 0.0.4, 120929, 1-
         //return $arr_return;
@@ -2255,7 +2256,7 @@ class tx_autositemap_pi1 extends tslib_pibase
         if( $this->b_drs_error )
         {
           $prompt = 'The sitemap code doesn\'t contains the marker "' . $hashMarkerOuter . '"!';
-          t3lib_div::devlog(' [WARN/HTML] '. $prompt, $this->extKey, 3 );
+          t3lib_div::devlog(' [WARN/HTML] '. $prompt, $this->extKey, 2 );
         }
         continue; 
       }
@@ -2374,48 +2375,15 @@ class tx_autositemap_pi1 extends tslib_pibase
   {
     $arr_return = null;
     
-      // 0.0.4, 120929
-//      // Set current page id from TypoScript
-//    if( empty( $this->tsRootlineLookfrompageid ) )
-//    {
-//      $this->tsRootlineLookfrompageid = $GLOBALS['TSFE']->id;
-//      if( $this->b_drs_typoscript )
-//      {
-//        $prompt = 'rootline.lookFromPageId was empty!';
-//        t3lib_div::devlog(' [WARN/TYPOSCRIPT] '. $prompt, $this->extKey, 2 );
-//        $prompt = 'rootline.lookFromPageId is overriden with current page id: ' .
-//                  $this->tsRootlineLookfrompageid;
-//        t3lib_div::devlog(' [INFO/TYPOSCRIPT] '. $prompt, $this->extKey, 1 );
-//      }
-//    }
-//      // Set current page id from TypoScript
-
-//      // Set root page id from TypoScript
-//    $cObj_name                  = $this->conf['rootline.']['rootpageId'];
-//    $cObj_conf                  = $this->conf['rootline.']['rootpageId.'];
-//    $this->tsRootlineRootpageid = $this->cObj->cObjGetSingle( $cObj_name, $cObj_conf );
-//    if( $this->b_drs_typoscript )
-//    {
-//      $prompt = 'rootline.rootpageId: ' . $this->tsRootlineRootpageid;
-//      t3lib_div::devlog(' [INFO/TYPOSCRIPT] '. $prompt, $this->extKey, 0 );
-//    }
-      // Set root page id from TypoScript
-
-//      // IF root page id is empty, take root page of current page by default
-//    if( empty( $this->tsRootlineRootpageid ) )
-//    {
-//        // 0.0.4, 120929, 1-
-//      //$arr_rowsOfAllPagesInRootLine = $GLOBALS['TSFE']->sys_page->getRootLine( $this->tsRootlineLookfrompageid );
-//        // 0.0.4, 120929, 1+
-      $arr_rowsOfAllPagesInRootLine = $GLOBALS['TSFE']->sys_page->getRootLine( $GLOBALS['TSFE']->id );
-      $this->tsRootlineRootpageid = $arr_rowsOfAllPagesInRootLine[0]['uid'];
-      if( $this->b_drs_typoscript )
-      {
-        $prompt = 'rootline.rootpageId : ' . $this->tsRootlineRootpageid;
-        t3lib_div::devlog(' [INFO/TYPOSCRIPT] '. $prompt, $this->extKey, 1 );
-      }
-//    }
-//      // IF root page id is empty, take root page of current page by default
+      // Get the root page of the current page
+    $arr_rowsOfAllPagesInRootLine = $GLOBALS['TSFE']->sys_page->getRootLine( $GLOBALS['TSFE']->id );
+    $this->tsRootlineRootpageid = $arr_rowsOfAllPagesInRootLine[0]['uid'];
+    if( $this->b_drs_typoscript )
+    {
+      $prompt = 'rootline.rootpageId : ' . $this->tsRootlineRootpageid;
+      t3lib_div::devlog(' [INFO/TYPOSCRIPT] '. $prompt, $this->extKey, 1 );
+    }
+      // Get the root page of the current page
 
     if( ( int ) $this->tsRootlineRootpageid == 0 )
     {
