@@ -1160,15 +1160,15 @@ class tx_autositemap_pi1 extends tslib_pibase
  */
   private function calcMenusWithLinebreak( )
   {
-//var_dump( __METHOD__, __LINE__, $this->sumOfLevels );
     foreach( array_keys( $this->sumOfLevels ) as $menuId )
     {
       if( $this->sumOfLevels[$menuId]['sum'] >= $this->tsRulesMenuItemslinebreak )
       {
-//var_dump( __METHOD__, __LINE__, $menuId );
         $uid = $menuId;
         $sum = $this->sumOfLevels[$menuId]['sum'];
+          // 0.0.4, 120929, 1-
 //        $lineBreakBeforeItem = ( int ) ( ( $sum + 1 ) / 2 );
+          // 0.0.4, 120929, 1+
         $lineBreakBeforeItem = ( int ) ( ( $sum - 2 ) / 2 );
 
         $sumItems               = 0;
