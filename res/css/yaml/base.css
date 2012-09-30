@@ -1,6 +1,9 @@
 .tx-autositemap-pi1 { 
   font-size:92%; 
 }
+.tx-autositemap-pi1 .cur a { 
+  background-color: #fff400; 
+}
 .tx-autositemap-pi1 h1 {
   font-size:145%; 
 /*  margin:16px 16px 0 16px; */
