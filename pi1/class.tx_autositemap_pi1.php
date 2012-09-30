@@ -2095,8 +2095,8 @@ class tx_autositemap_pi1 extends tslib_pibase
           $cObj_conf  = $this->conf['html.']['menuMainOuterWrap.'];
           break;
         case( $uid == $uidLast ):
-          $cObj_name      = $this->conf['html.']['menuMainOuterWrapLast'];
-          $cObj_conf      = $this->conf['html.']['menuMainOuterWrapLast.'];
+          $cObj_name  = $this->conf['html.']['menuMainOuterWrapLast'];
+          $cObj_conf  = $this->conf['html.']['menuMainOuterWrapLast.'];
           break;
         default:
           $cObj_name  = $this->conf['html.']['menuMainOuterWrap'];
