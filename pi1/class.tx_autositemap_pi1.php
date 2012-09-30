@@ -2089,6 +2089,7 @@ class tx_autositemap_pi1 extends tslib_pibase
 
         // Get the outer wrap for the current menu
 var_dump( __METHOD__, __LINE__, $this->case, $uid, $uidLast );
+die( );
       switch( true )
       {
         case( $this->case == TX_AUTOSITEMAP_PI1_MENUS_05 ):
