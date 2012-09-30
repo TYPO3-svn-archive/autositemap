@@ -774,23 +774,12 @@ plugin.tx_autositemap_pi1 {
 
   ////////////////////////////////////////////////////////////
   //
-  // plugin.tx_autositemap_pi1.menu_main
-
-plugin.tx_autositemap_pi1 {
-  menu_main < plugin.tx_autositemap_pi1.master_templates.yaml.menus.menu_main
-}
-  // plugin.tx_autositemap_pi1.menu_main
-
-
-
-  ////////////////////////////////////////////////////////////
-  //
-  // plugin.tx_autositemap_pi1.menu_main
+  // plugin.tx_autositemap_pi1.menu_main_last
 
 plugin.tx_autositemap_pi1 {
   menu_main_last < plugin.tx_autositemap_pi1.master_templates.yaml.menus.menu_main_last
 }
-  // plugin.tx_autositemap_pi1.menu_main
+  // plugin.tx_autositemap_pi1.menu_main_last
 
 
 
@@ -802,3 +791,14 @@ plugin.tx_autositemap_pi1 {
   menu_margin < plugin.tx_autositemap_pi1.master_templates.yaml.menus.menu_margin
 }
   // plugin.tx_autositemap_pi1.menu_margin
+
+
+
+  ////////////////////////////////////////////////////////////
+  //
+  // page.includeCSS
+
+page.includeCSS {
+  tx_autositemap_pi1_yaml = EXT:autositemap/res/pi1/yaml/default.css
+}
+  // page.includeCSS
