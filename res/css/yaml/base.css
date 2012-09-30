@@ -9,18 +9,17 @@
   margin-top:32px; 
 }
 .tx-autositemap-pi1 h2 {
-  margin:1em 0 0 0; 
+  margin:.4em 0 0 0; 
   font-weight:bold; 
   font-size:1em; 
 }
 .tx-autositemap-pi1 ul {
-  margin:0 16px 0 16px; 
-  padding-bottom:21px; 
+  margin:0; 
+  padding-bottom:1.6em; 
   list-style:none; 
 }
 .tx-autositemap-pi1 li {
   margin: 5px 0 !important;
-  padding:0; 
 }
 .tx-autositemap-pi1 ul li ul {
   margin:0; 
