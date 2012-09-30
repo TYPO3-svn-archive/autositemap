@@ -7,6 +7,7 @@
   // plugin.tx_autositemap_pi1.menu_main
   // plugin.tx_autositemap_pi1.menu_main_last
   // plugin.tx_autositemap_pi1.menu_margin
+  // page.includeCSS
 
 
 
@@ -799,6 +800,6 @@ plugin.tx_autositemap_pi1 {
   // page.includeCSS
 
 page.includeCSS {
-  tx_autositemap_pi1_yaml = EXT:autositemap/res/pi1/yaml/default.css
+  tx_autositemap_pi1_yaml = EXT:autositemap/res/pi1/yaml/autositemap_yaml.css
 }
   // page.includeCSS
