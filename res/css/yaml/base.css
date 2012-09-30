@@ -13,6 +13,11 @@
   font-weight:bold; 
   font-size:1em; 
 }
+.tx-autositemap-pi1 ul {
+  margin:0 16px 0 16px; 
+  padding-bottom:21px; 
+  list-style:none; 
+}
 .tx-autositemap-pi1 li {
   padding:0; 
 }
