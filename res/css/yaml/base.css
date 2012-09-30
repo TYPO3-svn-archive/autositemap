@@ -19,6 +19,7 @@
   list-style:none; 
 }
 .tx-autositemap-pi1 li {
+  margin: 5px 0 !important;
   padding:0; 
 }
 .tx-autositemap-pi1 ul li ul {
