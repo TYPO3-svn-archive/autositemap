@@ -878,7 +878,15 @@ class tx_autositemap_pi1 extends tslib_pibase
       // Get uid of the last main menu
     $uidOfMainLast      = $arrUidListForMain[ count( $arrUidListForMain ) -1 ];
       // Set exclude uid list for the main menu (without the last main menu)
-    $excludeUidsInMain  = $uidOfMainLast . ',' . $uidListMargin;
+    switch( true )
+    {
+      case( $this->case != TX_AUTOSITEMAP_PI1_MENUS_05 ):
+        $excludeUidsInMain  = $uidOfMainLast . ',' . $uidListMargin;
+        break;
+      default:
+        $excludeUidsInMain  = $uidListMargin;
+        break;
+    }
     
       // Unset the uid of the last main menu
     unset( $arrUidListForMain[ count( $arrUidListForMain ) -1 ] );
@@ -1710,18 +1718,20 @@ class tx_autositemap_pi1 extends tslib_pibase
       // Get TypoScript configuration for the hierachical menu
     $cObj_name  = $this->conf['menu_main'];
     $cObj_conf  = $this->conf['menu_main.'];
-    $hmenuMain  = $this->cObj->cObjGetSingle( $cObj_name, $cObj_conf );
+    $hmenu  = $this->cObj->cObjGetSingle( $cObj_name, $cObj_conf );
       // Render the hierachical menu (main menu)
 
       // 0.0.4, dwildt, +
-      // Render the hierachical menu (main menu last)
-      // Get TypoScript configuration for the hierachical menu
-    $cObj_name      = $this->conf['menu_main_last'];
-    $cObj_conf      = $this->conf['menu_main_last.'];
-    $hmenuMainLast  = $this->cObj->cObjGetSingle( $cObj_name, $cObj_conf );
-      // Render the hierachical menu (main menu last)
-    
-    $hmenu = $hmenuMain . $hmenuMainLast;
+    if( $this->case != TX_AUTOSITEMAP_PI1_MENUS_05 )
+    {
+        // Render the hierachical menu (main menu last)
+        // Get TypoScript configuration for the hierachical menu
+      $cObj_name      = $this->conf['menu_main_last'];
+      $cObj_conf      = $this->conf['menu_main_last.'];
+      $hmenuMainLast  = $this->cObj->cObjGetSingle( $cObj_name, $cObj_conf );
+        // Render the hierachical menu (main menu last)
+      $hmenu = $hmenu . $hmenuMainLast;
+    }
       // 0.0.4, dwildt, +
 
       // SWITCH : case
@@ -2088,8 +2098,8 @@ class tx_autositemap_pi1 extends tslib_pibase
         // Get the inner wrap for the current menu
 
         // Get the outer wrap for the current menu
-var_dump( __METHOD__, __LINE__, $this->case, $uid, $uidLast );
-die( );
+//var_dump( __METHOD__, __LINE__, $this->case, $uid, $uidLast );
+//die( );
       switch( true )
       {
         case( $this->case == TX_AUTOSITEMAP_PI1_MENUS_05 ):
