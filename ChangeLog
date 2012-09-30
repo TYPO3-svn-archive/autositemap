@@ -1,7 +1,14 @@
+0.9.1
+  12-09-30
+  Publishing
+  Update
+  * Manual
+
 0.0.4
   12-09-29
   Improvements
   * margin column get the class ym-gr (former: ym_gl) 
+  * Configuring the TypoScript Constant Editor
   Bugfix
   * pi1/locallang.xml
 
@@ -10,7 +17,7 @@
   New Feature
   * multiple master_templates
     Effected file: static/pi1/setup.txt
-  * priorites:  plugin.tx_autositemap_pi1.rules.priority
+  * priorities: plugin.tx_autositemap_pi1.rules.priority
                 * maxLineBreaks
                 * oneLineBreak
                 * noLineBreak

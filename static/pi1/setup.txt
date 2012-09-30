@@ -57,11 +57,15 @@ plugin.tx_autositemap_pi1 {
       }
     }
   }
-    // Configuration of menus for the main columns. Please use the draft like: plugin.tx_autositemap_pi1.menu_main < plugin.tx_autositemap_pi1.master_templates.hmenu
+    // Configuration of menus for the main columns. 
   menu_main = 
   menu_main {
   }
-    // Configuration of menus for the margin column. Please use the draft like: plugin.tx_autositemap_pi1.menu_margin < plugin.tx_autositemap_pi1.master_templates.hmenu
+    // Configuration of the last menu for the main columns. 
+  menu_main_last = 
+  menu_main_last {
+  }
+    // Configuration of menus for the margin column. 
   menu_margin = 
   menu_margin {
   }
