@@ -6,10 +6,10 @@
   </meta>
   <data type="array">
     <languageKey index="default" type="array">
-      <label index="sDEF">Take TypoScript!</label>
+      <label index="sDEF">Please use the TypoScript Constant Editor!</label>
     </languageKey>
     <languageKey index="de" type="array">
-      <label index="sDEF">Nimm TypoScript!</label>
+      <label index="sDEF">Benutze bitte den TypoScript Constant Editor!</label>
     </languageKey>
   </data>
 </T3locallang>
