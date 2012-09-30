@@ -2088,9 +2088,13 @@ class tx_autositemap_pi1 extends tslib_pibase
         // Get the inner wrap for the current menu
 
         // Get the outer wrap for the current menu
-      switch( $uid )
+      switch( true )
       {
-        case( $uidLast ):
+        case( $this->case == TX_AUTOSITEMAP_PI1_MENUS_05 ):
+          $cObj_name  = $this->conf['html.']['menuMainOuterWrap'];
+          $cObj_conf  = $this->conf['html.']['menuMainOuterWrap.'];
+          break;
+        case( $uid == $uidLast ):
           $cObj_name      = $this->conf['html.']['menuMainOuterWrapLast'];
           $cObj_conf      = $this->conf['html.']['menuMainOuterWrapLast.'];
           break;

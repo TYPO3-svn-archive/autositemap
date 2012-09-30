@@ -3,7 +3,7 @@ plugin.tx_autositemap_pi1 {
   # cat=Autositemap - Menu Configuration//100;       type=string; label= Exclude Doktypes: 1: page. 3: link to an external URL. 4: Shortcut. 6: page for backend user. 7: mount point.199: menu seperator. 254: folder. 255: recycler. Default: 3,6,7,199,254,255
   hmenu.excludeDoktypes = 3,6,7,199,254,255
 
-  # cat=Autositemap - Rules//100;       type=options[maxLineBreaks,oneLineBreak,noLineBreak];  label= Priority: maxLineBreaks: If menus have enough items, they become double columns. oneLineBreak: The greeatest menu will get a double column. noLineBreak: If there are enough menus, each menu becomes one column only.
+  # cat=Autositemap - Rules//100;       type=options[maxLineBreaks,oneLineBreak,noLineBreak];  label= Priority: maxLineBreaks: If menus have enough items, they become double columns. oneLineBreak: The greeatest menu will get a double column, if there are less than four menus. noLineBreak: If there are enough menus, each menu becomes one column only.
   rules.priority = maxLineBreaks
   # cat=Autositemap - Rules//101;       type=int+;  label= Minimum menu items for a line break: A menu must contains at least this number of submenus or and items, if it should get a line break.
   rules.menuItems.lineBreak = 13
