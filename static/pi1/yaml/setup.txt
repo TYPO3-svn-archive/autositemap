@@ -716,7 +716,7 @@ plugin.tx_autositemap_pi1 {
             ACT {
               wrapItemAndSub >
             }
-            ACRIFSUB {
+            ACTIFSUB {
               wrapItemAndSub >
             }
             SPC {
