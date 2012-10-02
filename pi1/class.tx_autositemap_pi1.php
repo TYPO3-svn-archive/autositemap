@@ -2726,7 +2726,7 @@ class tx_autositemap_pi1 extends tslib_pibase
         // 3. level
       $pids3rdLevel = implode( ',', array_keys( $arr2ndLevel[$pid2ndLevel] ) );
       $arr3rdLevel  = $this->pagetreeStructureSql( $pids3rdLevel );
-      foreach( array_keys( $arr3rdLevel ) as $pid3rdLevel )
+      foreach( ( array ) array_keys( $arr3rdLevel ) as $pid3rdLevel )
       {
 //        $arr1stLevel[$rootPid][$pid2ndLevel][$pid3rdLevel] = $arr3rdLevel[$pid3rdLevel];
 //        $arr1stLevel[$rootPid][$pid2ndLevel][$pid3rdLevel]['number'] = $number;

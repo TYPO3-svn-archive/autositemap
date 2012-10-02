@@ -1,3 +1,8 @@
+0.9.2
+  12-10-02
+  Bugfix
+  * array_keys() expects parameter 1 to be array in pi1/class.tx_autositemap_pi1.php line 2729
+
 0.9.1
   12-09-30
   Publishing
