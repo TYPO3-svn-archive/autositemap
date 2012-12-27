@@ -17,6 +17,10 @@ plugin.tx_autositemap_pi1 {
     dontRemoveHtmlComments {
       value = {$plugin.tx_autositemap_pi1.debugging}
     }
+  }
+    // Evaluation support
+  evaluation =
+  evaluation {
       // [INTEGER] Root page id from constant editor
     rootPageUid = {$plugin.tx_autositemap_pi1.hmenu.rootPageUid}
   }

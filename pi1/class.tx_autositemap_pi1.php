@@ -2448,7 +2448,7 @@ class tx_autositemap_pi1 extends tslib_pibase
 //    $arr_rowsOfAllPagesInRootLine = $GLOBALS['TSFE']->sys_page->getRootLine( $GLOBALS['TSFE']->id );
 //    $this->tsRootlineRootpageid = $arr_rowsOfAllPagesInRootLine[0]['uid'];
       // #43695, 121227, dwildt, 1+
-    $this->tsRootlineRootpageid = $this->conf['debugging.']['rootPageUid'];
+    $this->tsRootlineRootpageid = $this->conf['debugging.']['evaluation'];
 
     if( $this->b_drs_typoscript )
     {
