@@ -99,7 +99,10 @@
           <li style="display:list-item">
             Gebe im Feld "Root page id" die Id Deiner Root-Page an.
           </li>
-        </ul>        
+        </ul>   
+        <p>
+          Dies ist eine Fehlermeldung der TYPO3-Erweiterung autositemap.
+        </p>
       ]]></label>
     </languageKey>
   </data>
