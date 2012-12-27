@@ -2453,12 +2453,19 @@ class tx_autositemap_pi1 extends tslib_pibase
     if( $this->b_drs_typoscript )
     {
       $prompt = 'rootline.rootpageId : ' . $this->tsRootlineRootpageid;
-      t3lib_div::devlog(' [INFO/TYPOSCRIPT] '. $prompt, $this->extKey, 1 );
+      t3lib_div::devlog(' [INFO/TYPOSCRIPT] '. $prompt, $this->extKey, 0 );
     }
       // Get the root page of the current page
 
     if( ( int ) $this->tsRootlineRootpageid == 0 )
     {
+      if( $this->b_drs_error )
+      {
+        $prompt = 'The TypoScript constant plugin.tx_autositemap_pi1.hmenu.rootPageUid is empty or 0.';
+        t3lib_div::devlog(' [ERROR/TYPOSCRIPT] '. $prompt, $this->extKey, 3 );
+        $prompt = 'Please allocate your root page id to plugin.tx_autositemap_pi1.hmenu.rootPageUid.';
+        t3lib_div::devlog(' [HELP/TYPOSCRIPT] '. $prompt, $this->extKey, 1 );
+      }
       $arr_return['error']['status'] = true;
       $arr_return['error']['header'] =  '<h1 style="color:red">
                                         ' . $this->pi_getLL( 'prompt.tsRootlineRootpageid.null.header' ) . '
