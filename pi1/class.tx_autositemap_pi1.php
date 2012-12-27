@@ -182,6 +182,7 @@ class tx_autositemap_pi1 extends tslib_pibase
     if( $arr_return['error']['status'] )
     {
       $content = $arr_return['error']['header'] . $arr_return['error']['prompt'];
+      $content = '<div style="background:white;border:1em solid red;color:red;padding:1em;text-align:center;">' . $content . '</div>';
       return $this->pi_wrapInBaseClass( $content );
     }
       // RETURN : init methods failed
