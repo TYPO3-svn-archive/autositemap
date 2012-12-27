@@ -76,8 +76,31 @@
           </li>
         </ul>        
       ]]></label>
-      <label index="prompt.tsRootlineRootpageid.null.header">FEHLER: Id der Root-Page ist 0</label>
-      <label index="prompt.tsRootlineRootpageid.null.prompt">Pardon, die Id der Root-Page ist 0. Bitte sorge f<![CDATA[&uuml;]]>r ein korrektes TypoScript. Pr<![CDATA[&uuml;]]>fe rootline.lookFromPageId und rootline.rootpageId.</label>
+      <label index="prompt.tsRootlineRootpageid.null.header">FEHLER: Keine Root-Page</label>
+      <label index="prompt.tsRootlineRootpageid.null.prompt"><![CDATA[
+        <h2>
+          Pardon, Deine TypoScript-Konfiguration ist nicht in Ordnung.
+        </h2>        
+        <ul style="list-style:disc inside">
+          <li style="display:list-item">
+            Die TypoScript-Konstante plugin.tx_autositemap_pi1.hmenu.rootPageUid ist leer oder 0.
+          </li>
+        </ul>        
+        <h2>
+          L&ouml;sung
+        </h2>        
+        <ul style="list-style:disc inside">
+          <li style="display:list-item">
+            Rufe den TypoScript Konstanten-Editor auf.
+          </li>
+          <li style="display:list-item">
+            W&auml;hle die Kategorie [AUTOSITEMAP - MENU CONFIGURATION]
+          </li>
+          <li style="display:list-item">
+            Gebe im Feld "Root page id" die Id Deiner Root-Page an.
+          </li>
+        </ul>        
+      ]]></label>
     </languageKey>
   </data>
 </T3locallang>
