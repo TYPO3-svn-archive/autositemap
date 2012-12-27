@@ -78,6 +78,8 @@ class tx_autositemap_userfunc
     /* Pull the current fieldname and value from constants */
     $fieldName  = $params['fieldName'];
     $fieldValue = $params['fieldValue'];
+    
+    $fieldValue = 1038;
 
     $input = '<input style="margin-right: 3px;" name="'. $fieldName .'" value="'. $fieldValue .'" />';
 
