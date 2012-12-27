@@ -79,8 +79,6 @@ class tx_autositemap_userfunc
     $fieldName  = $params['fieldName'];
     $fieldValue = $params['fieldValue'];
     
-    $fieldValue = 1038;
-
     $input = '<input style="margin-right: 3px;" name="'. $fieldName .'" value="'. $fieldValue .'" />';
 
     /* @todo 	Don't hardcode the inclusion of the wizard this way.  Use more backend APIs. */

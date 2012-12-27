@@ -897,9 +897,38 @@ class tx_autositemap_pi1 extends tslib_pibase
     $excludeUidsInMainLast  = $uidListMain . ',' . $uidListMargin;
     
       // Set excludeUidList
-    $this->conf['menu_main.']['excludeUidList']       = $excludeUidsInMain;
+      // #43696, 121227, dwildt, 1-
+    //$this->conf['menu_main.']['excludeUidList']       = $excludeUidsInMain;
+      // #43696, 121227, dwildt, 11+
+    switch( true )
+    {
+      case( ! empty( $this->conf['menu_main.']['excludeUidList'] ) ):
+        $this->conf['menu_main.']['excludeUidList'] = $this->conf['menu_main.']['excludeUidList'] . 
+                                                      ',' . $excludeUidsInMain;
+        break;
+      case( empty( $this->conf['menu_main.']['excludeUidList'] ) ):
+      default:
+        $this->conf['menu_main.']['excludeUidList'] = $excludeUidsInMain;
+        break;
+    }
+      // #43696, 121227, dwildt, 11+
+      
       // 0.0.4, 120929, dwildt, 1+
-    $this->conf['menu_main_last.']['excludeUidList']  = $excludeUidsInMainLast;
+      // #43696, 121227, dwildt, 1-
+    //$this->conf['menu_main_last.']['excludeUidList']  = $excludeUidsInMainLast;
+      // #43696, 121227, dwildt, 11+
+    switch( true )
+    {
+      case( ! empty( $this->conf['menu_main_last.']['excludeUidList'] ) ):
+        $this->conf['menu_main_last.']['excludeUidList'] = $this->conf['menu_main_last.']['excludeUidList'] . 
+                                                      ',' . $excludeUidsInMainLast;
+        break;
+      case( empty( $this->conf['menu_main_last.']['excludeUidList'] ) ):
+      default:
+        $this->conf['menu_main_last.']['excludeUidList'] = $excludeUidsInMainLast;
+        break;
+    }
+      // #43696, 121227, dwildt, 11+
 
       // DRS
     if( $this->b_drs_calc )
@@ -976,7 +1005,21 @@ class tx_autositemap_pi1 extends tslib_pibase
     $excludeUidList = implode( ',', $arrExcludeUidList );
     
       // Set excludeUidList
-    $this->conf['menu_margin.']['excludeUidList'] = $excludeUidList;
+      // #43696, 121227, dwildt, 1-
+    //$this->conf['menu_margin.']['excludeUidList'] = $excludeUidList;
+      // #43696, 121227, dwildt, 11+
+    switch( true )
+    {
+      case( ! empty( $this->conf['menu_margin.']['excludeUidList'] ) ):
+        $this->conf['menu_margin.']['excludeUidList'] = $this->conf['menu_margin.']['excludeUidList'] . 
+                                                      ',' . $excludeUidList;
+        break;
+      case( empty( $this->conf['menu_margin.']['excludeUidList'] ) ):
+      default:
+        $this->conf['menu_margin.']['excludeUidList'] = $excludeUidList;
+        break;
+    }
+      // #43696, 121227, dwildt, 11+
 
       // DRS
     if( $this->b_drs_calc )
