@@ -2386,8 +2386,11 @@ class tx_autositemap_pi1 extends tslib_pibase
     $arr_return = $this->initRootPageId( );
     if( $arr_return['error']['status'] )
     {
-      $content = $arr_return['error']['header'] . $arr_return['error']['prompt'];
-      return $this->pi_wrapInBaseClass( $content );
+        // 121227, dwildt, 1+
+      return $arr_return;
+        // 121227, dwildt, 2-
+//      $content = $arr_return['error']['header'] . $arr_return['error']['prompt'];
+//      return $this->pi_wrapInBaseClass( $content );
     }
       // RETURN : Set root page id failed
 
