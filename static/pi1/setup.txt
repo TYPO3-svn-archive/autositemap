@@ -17,6 +17,8 @@ plugin.tx_autositemap_pi1 {
     dontRemoveHtmlComments {
       value = {$plugin.tx_autositemap_pi1.debugging}
     }
+      // [INTEGER] Root page id from constant editor
+    rootPageUid = {$plugin.tx_autositemap_pi1.hmenu.rootPageUid}
   }
     // HTML snippets. They will taken at runtime.
   html =
