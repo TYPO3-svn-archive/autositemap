@@ -971,7 +971,7 @@ class tx_autositemap_pi1 extends tslib_pibase
  * calcExcludeUidListMargin( ): 
  *
  * @return    void
- * @version 0.0.2
+ * @version 1.0.0
  * @since   0.0.2
  */
   private function calcExcludeUidListMargin( )
@@ -2436,7 +2436,7 @@ class tx_autositemap_pi1 extends tslib_pibase
  * initRootPageId( ): 
  *
  * @return    array        $arr_return  : data[rootpageId] contain the id of the root page
- * @version 0.0.4
+ * @version 1.0.0
  * @since   0.0.2
  */
   private function initRootPageId( )
