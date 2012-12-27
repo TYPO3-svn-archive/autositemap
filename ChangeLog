@@ -4,9 +4,13 @@
   * #43696: Exclude page ID
     #43695: Configurable rootpage ID
     Effected files:
-    * static
-      * pi1/constants.txt
-      * pi1/yaml/setup.txt
+    * lib/extmanager/class.tx_autositemap_extmanager.php  (removed)
+    * lib/userfunc/class.tx_autositemap_userfunc.php      (new)
+    * static/pi1
+      * constants.txt
+      * setup.txt
+    * static/pi1/yaml
+      * setup.txt
 
 0.9.3
   12-10-02
