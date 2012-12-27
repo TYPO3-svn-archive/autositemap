@@ -38,7 +38,7 @@
  *
  *
  *
- *   49: class tx_autositemap_extmanager
+ *   49: class tx_autositemap_userfunc
  *   67:     function promptCheckUpdate()
  *  102:     function promptCurrIP()
  *
@@ -46,7 +46,7 @@
  * (This index is automatically created/updated by the extension "extdeveval")
  *
  */
-class tx_autositemap_extmanager
+class tx_autositemap_userfunc
 {
   
  /**
@@ -68,6 +68,27 @@ class tx_autositemap_extmanager
 
 
 
+  /**
+   * pageWizard( ): Builds an input form that also includes the link popup wizard.
+   * @param		array		Parameter array.  Contains fieldName and fieldValue.
+   * @return		string		HTML output for form widget.
+   */
+  function pageWizard( $params ) 
+  {
+    /* Pull the current fieldname and value from constants */
+    $fieldName  = $params['fieldName'];
+    $fieldValue = $params['fieldValue'];
+
+    $input = '<input style="margin-right: 3px;" name="'. $fieldName .'" value="'. $fieldValue .'" />';
+
+    /* @todo 	Don't hardcode the inclusion of the wizard this way.  Use more backend APIs. */
+    $wizard = '<a href="#" onclick="this.blur(); vHWin=window.open(\'../../../../typo3/browse_links.php?mode=wizard&amp;P[field]='. $fieldName .'&amp;P[formName]=editForm&amp;P[itemName]='. $fieldName .'&amp;P[fieldChangeFunc][typo3form.fieldGet]=null&amp;P[fieldChangeFunc][TBE_EDITOR_fieldChanged]=null\',\'popUpID478be36b64\',\'height=300,width=500,status=0,menubar=0,scrollbars=1\'); vHWin.focus(); return false;"><img src="../../../../typo3/sysext/t3skin/icons/gfx/link_popup.gif" width="16" height="15" border="0" alt="Link" title="Link" /></a>';
+
+    return $input.$wizard;
+  }
+
+  
+  
   /**
    * promptExternalLinks(): Displays the quick start message.
    *
@@ -104,9 +125,9 @@ class tx_autositemap_extmanager
 }
 
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/autositemap/lib/class.tx_autositemap_extmanager.php'])
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/autositemap/lib/class.tx_autositemap_userfunc.php'])
 {
-  include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/autositemap/lib/class.tx_autositemap_extmanager.php']);
+  include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/autositemap/lib/class.tx_autositemap_userfunc.php']);
 }
 
 ?>

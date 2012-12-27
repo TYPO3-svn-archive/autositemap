@@ -4,7 +4,7 @@ plugin.tx_autositemap_pi1 {
   hmenu.excludeDoktypes = 3,6,7,199,254,255
   # cat=Autositemap - Menu Configuration//101;       type=string; label= Exclude uids: Comma seperated list of ids of pages, which should ignored. All subpages of an excluded page will ignored too.
   hmenu.excludeUidList  = 
-  # cat=Autositemap - Menu Configuration//102;       type=int+; label= Root page id: Uid of the root page. Menu / sitemap will calculated from this startingpoint.
+  # cat=Autositemap - Menu Configuration//102;       type=user[EXT:autositemap/lib/userfunc/class.tx_autositemap_userfunc.php:tx_autositemap_userfunc->pageWizard]; label= Root page id: Uid of the root page. Menu / sitemap will calculated from this startingpoint.
   hmenu.rootPageUid     = 
 
   # cat=Autositemap - Rules//100;       type=options[maxLineBreaks,oneLineBreak,noLineBreak];  label= Priority: maxLineBreaks: If menus have enough items, they become double columns. oneLineBreak: The greeatest menu will get a double column, if there are less than four menus. noLineBreak: If there are enough menus, each menu becomes one column only.
