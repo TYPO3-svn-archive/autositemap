@@ -262,8 +262,13 @@ plugin.tx_autositemap_pi1 {
         menu_main {
             // [STRING/CSV] Comma seperated list of ids of pages, which should ignored.
           excludeUidList  = {$plugin.tx_autositemap_pi1.hmenu.excludeUidList}
-            // [STRING/CSV] Comma seperated list of ids of doctypes, which should ignored.
+            // [STRING/CSV] Comma seperated list of ids of doktypes, which should ignored.
           excludeDoktypes = {$plugin.tx_autositemap_pi1.hmenu.excludeDoktypes}
+          special = directory
+          special {
+            value = {$plugin.tx_autositemap_pi1.hmenu.rootPageUid}
+          }
+            // 1st level (top level)
           1 = TMENU
           1 {
             expAll = 1
@@ -388,6 +393,7 @@ plugin.tx_autositemap_pi1 {
             }
             wrap = |
           }
+            // 2nd level
           2 = TMENU
           2 {
             expAll = 1
@@ -540,6 +546,7 @@ plugin.tx_autositemap_pi1 {
             }
             wrap = <ul class="navi-ul">|</ul>
           }
+            // 3rd level
           3 = TMENU
           3 {
             expAll = 1

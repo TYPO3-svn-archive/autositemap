@@ -52,7 +52,7 @@ define('TX_AUTOSITEMAP_PI1_PRIORITY_ONELINEBREAK',   300 );
  * @package    TYPO3
  * @subpackage  autositemap
  *
- * @version 0.0.4
+ * @version 1.0.0
  * @since 0.0.1
  */
 
@@ -834,7 +834,7 @@ class tx_autositemap_pi1 extends tslib_pibase
  * calcExcludeUidListMain( ): 
  *
  * @return    void
- * @version 0.0.3
+ * @version 1.0.0
  * @since   0.0.2
  */
   private function calcExcludeUidListMain( )
@@ -842,7 +842,8 @@ class tx_autositemap_pi1 extends tslib_pibase
       // 0.0.4, 120929
     $arrUidListForMain            = null;
     $arrExcludeUidListForMain     = null;
-    $arrExcludeUidListForMainLast = null;
+      // 121227, dwildt, 1-
+    //$arrExcludeUidListForMainLast = null;
 
       // Short variable
     $pagetreeStructure = $this->pagetreeStructure[$this->tsRootlineRootpageid]; 
@@ -2144,6 +2145,8 @@ class tx_autositemap_pi1 extends tslib_pibase
       }
     }
 
+    unset( $uidLast );
+    
       // RETURN : the handled sitemap
     $arr_return['data']['content'] = $content;
     return $arr_return;
