@@ -38,9 +38,38 @@
             Include an additional static template like "+Autositemap YAML (autositemap)."
           </li>
         </ul>        
+        <p>
+          This is a prompt of the TYPO3 extension autositemap.
+        </p>
       ]]></label>
-      <label index="prompt.tsRootlineRootpageid.null.header">ERROR: root page id is 0</label>
-      <label index="prompt.tsRootlineRootpageid.null.prompt">Sorry, the root page id is 0. Please take care of a proper TypoScript. Check rootline.lookFromPageId and rootline.rootpageId.</label>
+      <label index="prompt.tsRootlineRootpageid.null.header">ERROR: any root page</label>
+      <label index="prompt.tsRootlineRootpageid.null.prompt"><![CDATA[
+        <h2>
+          Sorry, your TypoScript configuration isn't proper
+        </h2>        
+        <ul style="list-style:disc inside">
+          <li style="display:list-item">
+            The TypoScript constant plugin.tx_autositemap_pi1.hmenu.rootPageUid is empty or 0.
+          </li>
+        </ul>        
+        <h2>
+          Fix it!
+        </h2>        
+        <ul style="list-style:disc inside">
+          <li style="display:list-item">
+            Take the TypoScript Constant-Editor.
+          </li>
+          <li style="display:list-item">
+            Please select the category [AUTOSITEMAP - MENU CONFIGURATION]
+          </li>
+          <li style="display:list-item">
+            Please allocate your root page id to the field "Root page id".
+          </li>
+        </ul>   
+        <p>
+          This is a prompt of the TYPO3 extension autositemap.
+        </p>
+      ]]></label>
     </languageKey>
     <languageKey index="de" type="array">
       <label index="prompt.requirements.ts.menumain.header">FEHLER: TypoScript</label>
@@ -75,6 +104,9 @@
             Binde ein zus&auml;tzliches Static Template wie "+Autositemap YAML (autositemap)" ein.
           </li>
         </ul>        
+        <p>
+          Dies ist eine Fehlermeldung der TYPO3-Erweiterung autositemap.
+        </p>
       ]]></label>
       <label index="prompt.tsRootlineRootpageid.null.header">FEHLER: Keine Root-Page</label>
       <label index="prompt.tsRootlineRootpageid.null.prompt"><![CDATA[
