@@ -2438,8 +2438,12 @@ class tx_autositemap_pi1 extends tslib_pibase
     $arr_return = null;
     
       // Get the root page of the current page
-    $arr_rowsOfAllPagesInRootLine = $GLOBALS['TSFE']->sys_page->getRootLine( $GLOBALS['TSFE']->id );
-    $this->tsRootlineRootpageid = $arr_rowsOfAllPagesInRootLine[0]['uid'];
+      // #43695, 121227, dwildt, 2-
+//    $arr_rowsOfAllPagesInRootLine = $GLOBALS['TSFE']->sys_page->getRootLine( $GLOBALS['TSFE']->id );
+//    $this->tsRootlineRootpageid = $arr_rowsOfAllPagesInRootLine[0]['uid'];
+      // #43695, 121227, dwildt, 1+
+    $this->tsRootlineRootpageid = $this->conf['debugging.']['rootPageUid'];
+
     if( $this->b_drs_typoscript )
     {
       $prompt = 'rootline.rootpageId : ' . $this->tsRootlineRootpageid;
