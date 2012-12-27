@@ -260,8 +260,9 @@ plugin.tx_autositemap_pi1 {
           // Example for use: plugin.tx_autositemap_pi1.menu_main < plugin.tx_autositemap_pi1.master_templates.hmenu
         menu_main = HMENU
         menu_main {
-            // [STRING, CSV] Will set while runtime
-          excludeUidList  = 
+            // [STRING/CSV] Comma seperated list of ids of pages, which should ignored.
+          excludeUidList  = {$plugin.tx_autositemap_pi1.hmenu.excludeUidList}
+            // [STRING/CSV] Comma seperated list of ids of doctypes, which should ignored.
           excludeDoktypes = {$plugin.tx_autositemap_pi1.hmenu.excludeDoktypes}
           1 = TMENU
           1 {

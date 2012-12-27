@@ -1,3 +1,13 @@
+1.0.0
+  12-12-27
+  New Features
+  * #43696: Exclude page ID
+    #43695: Configurable rootpage ID
+    Effected files:
+    * static
+      * pi1/constants.txt
+      * pi1/yaml/setup.txt
+
 0.9.3
   12-10-02
   Bugfix
