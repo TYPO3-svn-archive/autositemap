@@ -1,3 +1,11 @@
+1.1.0
+  13-11-06
+  Task 
+  * #53373: State: Alpha -> Beta
+  Bug
+  * #53374: calcMenusForCase: array_keys() expects parameter 1 to be array, null given
+            * pi1\class.tx_autositemap_pi1.php on line 1120
+
 1.0.1
   13-02-15
   Bugfix

@@ -1117,7 +1117,8 @@ class tx_autositemap_pi1 extends tslib_pibase
     foreach( array_keys( $this->sumOfLevels ) as $uidMainMenu )
     {
       $arrMenuHasLineBreak[$positionMenu]['linebreak'] = false;
-      if( in_array( $uidMainMenu, array_keys( $this->menusWithLinebreak ) ) )
+        // #53374, 131106, dwildt, ~
+      if( in_array( ( array) $uidMainMenu, array_keys( ( array) $this->menusWithLinebreak ) ) )
       {
         $arrMenuHasLineBreak[$positionMenu]['linebreak'] = true;
       }
